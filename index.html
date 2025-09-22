@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>بطاقة المنخرط</title>
-  <style>
-    body { font-family: Arial; direction: rtl; text-align: center; background: #f4f4f4; padding: 30px; }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 400px;
-      margin: auto;
-      box-shadow: 0 0 10px #ccc;
-    }
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
-    h2 { color: #333; }
-    p { font-size: 18px; color: #444; }
-  </style>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/isRockFx.js"></script>
+    <script>
+        $(function () {
+            $('#ButtonCal').click(
+                function () {
+                    //取得用戶輸入的參數
+                    var para = { 'height': $('#txbHeight').val(), 'weight': $('#txbWeight').val() };
+                    //呼叫API
+                    ExecuteAPI('Example', 'BMI', para,
+			//呼叫WebAPI成功時運行的Call Back Function
+                        function (result) {
+                            alert(result.Data);
+                        }
+                        );
+                }
+                );
+        });
+    </script>
 </head>
 <body>
-
-<div class="card">
-  <h2>بطاقة المنخرط</h2>
-  <p><strong>الاسم:</strong> أحمد بن يوسف</p>
-  <p><strong>تاريخ الانخراط:</strong> 20 سبتمبر 2025 - 18:00</p>
-  <p style="margin-top:20px;">✅ هذا الشخص لديه بطاقة الانخراط</p>
-  <img src="boxing-card.jpg" alt="صورة بطاقة الملاكمة">
-</div>
-
+    <div class="row" style="margin:10px">
+        <div class="col-md-12">
+            <div class="form-group">
+                身高:
+                <input id="txbHeight" class="form-control" placeholder="請輸入身高" />
+                體重:
+                <input id="txbWeight" class="form-control" placeholder="請輸入體重" />
+                <br />
+                <button class="btn btn-primary" id="ButtonCal">計算</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
